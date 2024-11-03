@@ -79,13 +79,15 @@ function getFormItem(
 function displayTeams() {
   //! recorrido del localstorage para armar tabla
   var teams = readLocalStorage("teams");
-  const tBody = document.querySelector(`#teams__list tbody`);
 
-  tBody.innerHTML = "";
-  teams.forEach((team) => {
-    const row = document.createElement("tr");
+  if (teams) {
+    const tBody = document.querySelector(`#teams__list tbody`);
 
-    row.innerHTML = ` <td>${team.team_name}</td>
+    tBody.innerHTML = "";
+    teams.forEach((team) => {
+      const row = document.createElement("tr");
+
+      row.innerHTML = ` <td>${team.team_name}</td>
        <td>${team.points}</td>
        <td>${team.goals_possitive}</td>
        <td>${team.goals_against}</td>
@@ -93,16 +95,29 @@ function displayTeams() {
        <td>${team.games_win}</td>
        <td>${team.games_lost}</td>`;
 
-    tBody.appendChild(row);
-  });
+      tBody.appendChild(row);
+    });
+  }
 }
 
 function calculateStats() {
   var teams = readLocalStorage("teams");
-
-  calculateTeamsQuantity(teams);
+  if (teams) {
+    calculateTeamsQuantity(teams);
+    calculateGFTotal(teams);
+  }
 }
 
 function calculateTeamsQuantity(teams) {
   document.getElementById("teams__stats__quantity").innerHTML = teams.length;
+}
+
+function calculateGFTotal(teams) {
+  let gfTotal = 0;
+
+  teams.forEach((team) => {
+    gfTotal += team.goals_possitive;
+  });
+
+  document.getElementById("teams__stats__GF_total").innerHTML = gfTotal;
 }
