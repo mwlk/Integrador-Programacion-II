@@ -108,6 +108,7 @@ function calculateStats() {
     calculateGFTotal(teams);
     getFixtureGoalForProm(teams);
     getFixtureGoalAgainstProm(teams);
+    getMaxTeamWithGamesWin(teams);
   }
 }
 
@@ -115,6 +116,7 @@ function calculateTeamsQuantity(teams) {
   document.getElementById("teams__stats__quantity").innerHTML = teams.length;
 }
 
+//! goles a favor
 function calculateGFTotal(teams) {
   let gfTotal = 0;
 
@@ -125,6 +127,7 @@ function calculateGFTotal(teams) {
   document.getElementById("teams__stats__GF_total").innerHTML = gfTotal;
 }
 
+//! promedio de goles a favor del campeonato
 function getFixtureGoalForProm(teams) {
   let gamesPlayedTotal = 0;
   let goalsForTotal = 0;
@@ -147,6 +150,7 @@ function getFixtureGoalForProm(teams) {
   console.log(goalsForTotal / gamesPlayedTotal);
 }
 
+//! promedio de goles en contra del campeonato
 function getFixtureGoalAgainstProm(teams) {
   let gamesPlayedTotal = 0;
   let goalsAgainstTotal = 0;
@@ -167,4 +171,17 @@ function getFixtureGoalAgainstProm(teams) {
 
   document.getElementById("teams__stats__fixture_GC_prom").innerHTML =
     fixtureGoalAgainstProm;
+}
+
+//! equipo con mayor partidos ganados
+function getMaxTeamWithGamesWin(teams) {
+  let teamMax = teams[0];
+
+  teams.forEach((team) => {
+    if (team.games_win > teamMax.games_win) {
+      teamMax = team;
+    }
+  });
+
+  document.getElementById("teams__stats__max_GW").innerHTML = teamMax.team_name;
 }
