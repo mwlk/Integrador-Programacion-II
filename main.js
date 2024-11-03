@@ -1,4 +1,4 @@
-import { addElementToStorage } from "./scripts/storage.js";
+import { addElementToStorage, readLocalStorage } from "./scripts/storage.js";
 
 //! buscamos el formulario de alta de equipos
 const form = document.getElementById("team__new__form");
@@ -41,6 +41,26 @@ form.addEventListener("submit", function (event) {
   clearItems(form);
 
   setFocus("team_name");
+
+  //! recorrido del localstorage para armar tabla
+  var teams = readLocalStorage("teams");
+  const tBody = document.querySelector(`#teams__list tbody`);
+
+  tBody.innerHTML = "";
+  teams.forEach((team) => {
+    // document.write(`${element.team_name} <br>`);
+    const row = document.createElement("tr");
+
+    row.innerHTML = ` <td>${team.team_name}</td>
+      <td>${team.points}</td>
+      <td>${team.goals_possitive}</td>
+      <td>${team.goals_against}</td>
+      <td>${team.games_played}</td>
+      <td>${team.games_win}</td>
+      <td>${team.games_lost}</td>`;
+
+    tBody.appendChild(row);
+  });
 });
 
 function setFocus(input) {
