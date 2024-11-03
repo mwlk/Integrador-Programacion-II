@@ -1,3 +1,5 @@
+import { addElementToStorage } from "./scripts/storage.js";
+
 //! buscamos el formulario de alta de equipos
 const form = document.getElementById("team__new__form");
 
@@ -40,26 +42,6 @@ form.addEventListener("submit", function (event) {
 
   setFocus("team_name");
 });
-
-function readLocalStorage(key) {
-  return JSON.parse(localStorage.getItem(key));
-}
-
-function setLocalStorage(key, values) {
-  localStorage.setItem(key, JSON.stringify(values));
-}
-
-function addElementToStorage(key, value) {
-  let teams = readLocalStorage(key);
-  if (teams === null) {
-    localStorage.setItem(key, JSON.stringify([value]));
-    return;
-  }
-
-  teams.push(value);
-
-  setLocalStorage(key, teams);
-}
 
 function setFocus(input) {
   document.getElementById(input).focus();
