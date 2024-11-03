@@ -82,7 +82,6 @@ function displayTeams() {
 
   tBody.innerHTML = "";
   teams.forEach((team) => {
-    // document.write(`${element.team_name} <br>`);
     const row = document.createElement("tr");
 
     row.innerHTML = ` <td>${team.team_name}</td>
