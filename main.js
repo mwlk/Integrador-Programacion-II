@@ -1,5 +1,7 @@
 import { addElementToStorage, readLocalStorage } from "./scripts/storage.js";
 
+displayTeams();
+
 //! buscamos el formulario de alta de equipos
 const form = document.getElementById("team__new__form");
 
@@ -38,29 +40,11 @@ form.addEventListener("submit", function (event) {
 
   addElementToStorage("teams", newTeam);
 
+  displayTeams();
+
   clearItems(form);
 
   setFocus("team_name");
-
-  //! recorrido del localstorage para armar tabla
-  var teams = readLocalStorage("teams");
-  const tBody = document.querySelector(`#teams__list tbody`);
-
-  tBody.innerHTML = "";
-  teams.forEach((team) => {
-    // document.write(`${element.team_name} <br>`);
-    const row = document.createElement("tr");
-
-    row.innerHTML = ` <td>${team.team_name}</td>
-      <td>${team.points}</td>
-      <td>${team.goals_possitive}</td>
-      <td>${team.goals_against}</td>
-      <td>${team.games_played}</td>
-      <td>${team.games_win}</td>
-      <td>${team.games_lost}</td>`;
-
-    tBody.appendChild(row);
-  });
 });
 
 function setFocus(input) {
@@ -89,4 +73,26 @@ function getFormItem(
     games_win: parseInt(games_win),
     games_lost: parseInt(games_lost),
   };
+}
+
+function displayTeams() {
+  //! recorrido del localstorage para armar tabla
+  var teams = readLocalStorage("teams");
+  const tBody = document.querySelector(`#teams__list tbody`);
+
+  tBody.innerHTML = "";
+  teams.forEach((team) => {
+    // document.write(`${element.team_name} <br>`);
+    const row = document.createElement("tr");
+
+    row.innerHTML = ` <td>${team.team_name}</td>
+       <td>${team.points}</td>
+       <td>${team.goals_possitive}</td>
+       <td>${team.goals_against}</td>
+       <td>${team.games_played}</td>
+       <td>${team.games_win}</td>
+       <td>${team.games_lost}</td>`;
+
+    tBody.appendChild(row);
+  });
 }
