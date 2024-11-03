@@ -100,11 +100,14 @@ function displayTeams() {
   }
 }
 
+//! funcion que llama a todos los calculos
 function calculateStats() {
   var teams = readLocalStorage("teams");
   if (teams) {
     calculateTeamsQuantity(teams);
     calculateGFTotal(teams);
+    getFixtureGoalForProm(teams);
+    getFixtureGoalAgainstProm(teams);
   }
 }
 
@@ -122,4 +125,46 @@ function calculateGFTotal(teams) {
   document.getElementById("teams__stats__GF_total").innerHTML = gfTotal;
 }
 
-function getFixtureGoalForProm(teams) {}
+function getFixtureGoalForProm(teams) {
+  let gamesPlayedTotal = 0;
+  let goalsForTotal = 0;
+
+  teams.forEach((team) => {
+    gamesPlayedTotal += team.games_played;
+    goalsForTotal += team.goals_for;
+  });
+
+  //! hay que validar que no sea infinito ni que sea == 0 para no lanzar excepciones
+  const fixtureGoalForProm =
+    gamesPlayedTotal > 0 &&
+    isFinite(goalsForTotal) &&
+    isFinite(gamesPlayedTotal)
+      ? goalsForTotal / gamesPlayedTotal
+      : 0;
+
+  document.getElementById("teams__stats__fixture_GF_prom").innerHTML =
+    fixtureGoalForProm;
+  console.log(goalsForTotal / gamesPlayedTotal);
+}
+
+function getFixtureGoalAgainstProm(teams) {
+  let gamesPlayedTotal = 0;
+  let goalsAgainstTotal = 0;
+
+  teams.forEach((team) => {
+    gamesPlayedTotal += team.games_played;
+    goalsAgainstTotal += team.goals_against;
+  });
+
+  const fixtureGoalAgainstProm =
+    gamesPlayedTotal > 0 &&
+    isFinite(goalsAgainstTotal) &&
+    isFinite(gamesPlayedTotal)
+      ? goalsAgainstTotal / gamesPlayedTotal
+      : 0;
+
+  console.log(goalsAgainstTotal / gamesPlayedTotal);
+
+  document.getElementById("teams__stats__fixture_GC_prom").innerHTML =
+    fixtureGoalAgainstProm;
+}
