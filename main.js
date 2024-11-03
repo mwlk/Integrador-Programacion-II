@@ -26,15 +26,15 @@ form.addEventListener("submit", function (event) {
   //! aca agregamos las validaciones
 
   //! creamos el objeto para poder agregarlo
-  const newTeam = {
+  let newTeam = getFormItem(
     team_name,
-    points: parseInt(points),
-    goals_possitive: parseInt(goals_possitive),
-    goals_against: parseInt(goals_against),
-    games_played: parseInt(games_played),
-    games_win: parseInt(games_win),
-    games_lost: parseInt(games_lost),
-  };
+    points,
+    goals_possitive,
+    goals_against,
+    games_played,
+    games_win,
+    games_lost
+  );
 
   addElementToStorage("teams", newTeam);
 
@@ -49,4 +49,24 @@ function setFocus(input) {
 
 function clearItems(form) {
   form.reset();
+}
+
+function getFormItem(
+  team_name,
+  points,
+  goals_possitive,
+  goals_against,
+  games_played,
+  games_win,
+  games_lost
+) {
+  return {
+    team_name,
+    points: parseInt(points),
+    goals_possitive: parseInt(goals_possitive),
+    goals_against: parseInt(goals_against),
+    games_played: parseInt(games_played),
+    games_win: parseInt(games_win),
+    games_lost: parseInt(games_lost),
+  };
 }
