@@ -1,11 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trabajo Integrador Programación II</title>
+    <script type="module" src="./main.js"></script>
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap JS (necesario para los modales y otros componentes) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap Icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Styles ---->
+    <link rel="stylesheet" href="styles/style.css">
+    <!-- Animate CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
+
 <body>
-    
+    <div id="layout" class="container mt-5">
+        <section id="title">
+            <h1 class="animate__animated animate__bounce text-center">Institución Cervantes</h1>
+            <h5 class="text-center">Listado de Equipos</h5>
+        </section>
+
+        <section id="teams__add_form">
+            <div class="card mx-4 mt-3">
+                <h5 class="text-center mt-3">Alta de equipos</h5>
+                <form id="team__new__form" class="mx-4">
+
+                    <fieldset class="border p-3 mt-3">
+                        <legend class="w-auto px-2">Información del equipo</legend>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="team_name">Nombre del equipo</label>
+                                <input required type="text" id="team_name" class="form-control" placeholder="Nombre">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="points">Cantidad de puntos</label>
+                                <input required type="number" id="points" class="form-control" min="0">
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="border p-3 mt-3">
+                        <legend class="w-auto px-2">Estadísticas de goles</legend>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="goals_for">Goles a favor</label>
+                                <input required required type="number" id="goals_possitive" class="form-control"
+                                    min="0">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="goals_against">Goles en contra</label>
+                                <input required type="number" id="goals_against" class="form-control" min="0">
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="border p-3 mt-3">
+                        <legend class="w-auto px-2">Cantidad de partidos</legend>
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <label for="games_played">Partidos Jugados</label>
+                                <input required type="number" id="games_played" class="form-control" min="0">
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label for="games_won">Partidos Ganados</label>
+                                <input required type="number" id="games_win" class="form-control" min="0">
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label for="games_lost">Partidos Perdidos</label>
+                                <input required type="number" id="games_lost" class="form-control" min="0">
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <div class="text-end mt-3 mb-2">
+                        <button type="submit" class="btn btn-success" disabled id="form__submit__add">Agregar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+
 </body>
+
 </html>
