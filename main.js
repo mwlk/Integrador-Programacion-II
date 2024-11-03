@@ -19,7 +19,7 @@ form.addEventListener("submit", function (event) {
   const team_name = document.getElementById("team_name").value;
   const points = document.getElementById("points").value;
 
-  const goals_possitive = document.getElementById("goals_possitive").value;
+  const goals_for = document.getElementById("goals_for").value;
   const goals_against = document.getElementById("goals_against").value;
 
   const games_played = document.getElementById("games_played").value;
@@ -32,7 +32,7 @@ form.addEventListener("submit", function (event) {
   let newTeam = getFormItem(
     team_name,
     points,
-    goals_possitive,
+    goals_for,
     goals_against,
     games_played,
     games_win,
@@ -59,7 +59,7 @@ function clearItems(form) {
 function getFormItem(
   team_name,
   points,
-  goals_possitive,
+  goals_for,
   goals_against,
   games_played,
   games_win,
@@ -68,7 +68,7 @@ function getFormItem(
   return {
     team_name,
     points: parseInt(points),
-    goals_possitive: parseInt(goals_possitive),
+    goals_for: parseInt(goals_for),
     goals_against: parseInt(goals_against),
     games_played: parseInt(games_played),
     games_win: parseInt(games_win),
@@ -89,7 +89,7 @@ function displayTeams() {
 
       row.innerHTML = ` <td>${team.team_name}</td>
        <td>${team.points}</td>
-       <td>${team.goals_possitive}</td>
+       <td>${team.goals_for}</td>
        <td>${team.goals_against}</td>
        <td>${team.games_played}</td>
        <td>${team.games_win}</td>
@@ -116,8 +116,10 @@ function calculateGFTotal(teams) {
   let gfTotal = 0;
 
   teams.forEach((team) => {
-    gfTotal += team.goals_possitive;
+    gfTotal += team.goals_for;
   });
 
   document.getElementById("teams__stats__GF_total").innerHTML = gfTotal;
 }
+
+function getFixtureGoalForProm(teams) {}
