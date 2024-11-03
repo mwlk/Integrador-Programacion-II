@@ -1,6 +1,7 @@
 import { addElementToStorage, readLocalStorage } from "./scripts/storage.js";
 
 displayTeams();
+calculateStats();
 
 //! buscamos el formulario de alta de equipos
 const form = document.getElementById("team__new__form");
@@ -41,7 +42,7 @@ form.addEventListener("submit", function (event) {
   addElementToStorage("teams", newTeam);
 
   displayTeams();
-
+  calculateStats();
   clearItems(form);
 
   setFocus("team_name");
@@ -94,4 +95,14 @@ function displayTeams() {
 
     tBody.appendChild(row);
   });
+}
+
+function calculateStats() {
+  var teams = readLocalStorage("teams");
+
+  calculateTeamsQuantity(teams);
+}
+
+function calculateTeamsQuantity(teams) {
+  document.getElementById("teams__stats__quantity").innerHTML = teams.length;
 }
