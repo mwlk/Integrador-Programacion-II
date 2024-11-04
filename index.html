@@ -26,7 +26,7 @@
         </section>
 
         <section id="teams__add_form">
-            <div class="card mx-4 mt-3">
+            <div class="card mx-4 mt-3 glass">
                 <h5 class="text-center mt-3">Alta de equipos</h5>
                 <form id="team__new__form" class="mx-4">
 
@@ -39,7 +39,7 @@
                             </div>
                             <div class="col-md-6 form-group">
                                 <label for="points">Cantidad de puntos</label>
-                                <input required type="number" id="points" class="form-control" min="0">
+                                <input required type="number" id="points" class="form-control" min="0" placeholder="Puntos">
                             </div>
                         </div>
                     </fieldset>
@@ -49,11 +49,11 @@
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <label for="goals_for">Goles a favor</label>
-                                <input required required type="number" id="goals_for" class="form-control" min="0">
+                                <input required required type="number" id="goals_for" class="form-control" min="0" placeholder="GF">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label for="goals_against">Goles en contra</label>
-                                <input required type="number" id="goals_against" class="form-control" min="0">
+                                <input required type="number" id="goals_against" class="form-control" min="0" placeholder="GC">
                             </div>
                         </div>
                     </fieldset>
@@ -63,15 +63,15 @@
                         <div class="row">
                             <div class="col-md-4 form-group">
                                 <label for="games_played">Partidos Jugados</label>
-                                <input required type="number" id="games_played" class="form-control" min="0">
+                                <input required type="number" id="games_played" class="form-control" min="0" placeholder="PJ">
                             </div>
                             <div class="col-md-4 form-group">
                                 <label for="games_won">Partidos Ganados</label>
-                                <input required type="number" id="games_win" class="form-control" min="0">
+                                <input required type="number" id="games_win" class="form-control" min="0" placeholder="PG">
                             </div>
                             <div class="col-md-4 form-group">
                                 <label for="games_lost">Partidos Perdidos</label>
-                                <input required type="number" id="games_lost" class="form-control" min="0">
+                                <input required type="number" id="games_lost" class="form-control" min="0" placeholder="PP">
                             </div>
                         </div>
                     </fieldset>
@@ -84,10 +84,10 @@
         </section>
 
         <section id="teams__stats" class="pb-3">
-            <div class="card mx-4 mt-3 ">
+            <div class="card mx-4 mt-3 glass">
                 <div class="row mt-3 mx-2 d-flex">
-                    <div class="col-md-3">
-                        <div class="card">
+                    <div class="col-12 col-sm-6 col-md-3 mb-3 mb-sm-0">
+                        <div class="card h-100">
                             <div class="card-header">
                                 Cantidad de equipos
                             </div>
@@ -96,8 +96,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="card">
+                    <div class="col-12 col-sm-6 col-md-3 mb-3 mb-sm-0">
+                        <div class="card h-100">
                             <div class="card-header">
                                 Acumulado total de GF
                             </div>
@@ -106,8 +106,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="card">
+                    <div class="col-12 col-sm-6 col-md-3 mb-3 mb-sm-0">
+                        <div class="card h-100">
                             <div class="card-header">
                                 Promedio de GF del campeonato
                             </div>
@@ -117,8 +117,8 @@
                         </div>
 
                     </div>
-                    <div class="col-md-3">
-                        <div class="card">
+                    <div class="col-12 col-sm-6 col-md-3 mb-3 mb-sm-0">
+                        <div class="card h-100">
                             <div class="card-header">
                                 Promedio de GC del campeonato
                             </div>
@@ -131,8 +131,8 @@
                 </div>
 
                 <div class="row mt-3 mx-2 d-flex">
-                    <div class="col-md-3">
-                        <div class="card">
+                    <div class="col-12 col-sm-6 col-md-3 mb-3 mb-sm-0">
+                        <div class="card h-100">
                             <div class="card-header">
                                 Equipo con mayor PG
                             </div>
@@ -142,8 +142,8 @@
                         </div>
 
                     </div>
-                    <div class="col-md-3">
-                        <div class="card">
+                    <div class="col-12 col-sm-6 col-md-3 mb-3 mb-sm-0">
+                        <div class="card h-100">
                             <div class="card-header">
                                 Equipo con mayor GF
                             </div>
@@ -153,8 +153,8 @@
                         </div>
 
                     </div>
-                    <div class="col-md-3">
-                        <div class="card">
+                    <div class="col-12 col-sm-6 col-md-3 mb-3 mb-sm-0">
+                        <div class="card h-100">
                             <div class="card-header">
                                 Equipo con menor PP
                             </div>
@@ -164,8 +164,8 @@
                         </div>
 
                     </div>
-                    <div class="col-md-3">
-                        <div class="card">
+                    <div class="col-12 col-sm-6 col-md-3 mb-3 mb-sm-0">
+                        <div class="card h-100">
                             <div class="card-header">
                                 Equipo con menor GC
                             </div>
@@ -178,8 +178,8 @@
                 </div>
 
                 <div class="row mt-3 mx-2 mb-3 d-flex">
-                    <div class="col-md-3 ">
-                        <div class="card">
+                    <div class="col-12 col-sm-6 col-md-3 mb-3 mb-sm-0">
+                        <div class="card h-100">
                             <div class="card-header">
                                 Cantidad de equipos con GC menores a 10
                             </div>
@@ -189,8 +189,8 @@
                         </div>
 
                     </div>
-                    <div class="col-md-3">
-                        <div class="card">
+                    <div class="col-12 col-sm-6 col-md-3 mb-3 mb-sm-0">
+                        <div class="card h-100">
                             <div class="card-header">
                                 Cantidad de equipos que superaron la Media de Puntos
                             </div>
@@ -206,21 +206,23 @@
         </section>
 
         <section id="teams__list" class="pb-3">
-            <div class="card mx-4">
-                <table class="table table-striped table-hover" id="teams__list">
-                    <thead>
-                        <tr>
-                            <th>Nombre del equipo</th>
-                            <th>Puntos</th>
-                            <th>Goles a favor</th>
-                            <th>Goles en contra</th>
-                            <th>Partidos jugados</th>
-                            <th>Partidos ganados</th>
-                            <th>Partidos perdidos</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+            <div class="card mx-4 glass">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover" id="teams__list">
+                        <thead>
+                            <tr>
+                                <th>Nombre del equipo</th>
+                                <th>Puntos</th>
+                                <th>Goles a favor</th>
+                                <th>Goles en contra</th>
+                                <th>Partidos jugados</th>
+                                <th>Partidos ganados</th>
+                                <th>Partidos perdidos</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </div>
         </section>
     </div>
