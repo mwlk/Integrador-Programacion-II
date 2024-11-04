@@ -109,6 +109,9 @@ function calculateStats() {
     getFixtureGoalForProm(teams);
     getFixtureGoalAgainstProm(teams);
     getMaxTeamWithGamesWin(teams);
+    getMaxTeamWithGoalsFor(teams);
+    getMinTeamWithGamesLost(teams);
+    getMinTeamWithGoalsAgainst(teams);
   }
 }
 
@@ -146,7 +149,7 @@ function getFixtureGoalForProm(teams) {
       : 0;
 
   document.getElementById("teams__stats__fixture_GF_prom").innerHTML =
-    fixtureGoalForProm;
+    fixtureGoalForProm.toFixed(2);
   console.log(goalsForTotal / gamesPlayedTotal);
 }
 
@@ -170,10 +173,10 @@ function getFixtureGoalAgainstProm(teams) {
   console.log(goalsAgainstTotal / gamesPlayedTotal);
 
   document.getElementById("teams__stats__fixture_GC_prom").innerHTML =
-    fixtureGoalAgainstProm;
+    fixtureGoalAgainstProm.toFixed(2);
 }
 
-//! equipo con mayor partidos ganados
+//! equipo con mayor cantidad de partidos ganados
 function getMaxTeamWithGamesWin(teams) {
   let teamMax = teams[0];
 
@@ -184,4 +187,43 @@ function getMaxTeamWithGamesWin(teams) {
   });
 
   document.getElementById("teams__stats__max_GW").innerHTML = teamMax.team_name;
+}
+
+//! equipo con mayor cantidad de goles a favor
+function getMaxTeamWithGoalsFor(teams) {
+  let teamMax = teams[0];
+
+  teams.forEach((team) => {
+    if (team.goals_for > teamMax.goals_for) {
+      teamMax = team;
+    }
+  });
+
+  document.getElementById("teams__stats__max_GF").innerHTML = teamMax.team_name;
+}
+
+//! equipo con menor cantidad de partidos perdidos
+function getMinTeamWithGamesLost(teams) {
+  let teamMin = teams[0];
+
+  teams.forEach((team) => {
+    if (team.games_lost < teamMin.games_lost) {
+      teamMin = team;
+    }
+  });
+
+  document.getElementById("teams__stats__min_GL").innerHTML = teamMin.team_name;
+}
+
+//! equipo con menor cantidad de goles en contra
+function getMinTeamWithGoalsAgainst(teams) {
+  let teamMin = teams[0];
+
+  teams.forEach((team) => {
+    if (team.goals_against < teamMin.goals_against) {
+      teamMin = team;
+    }
+  });
+
+  document.getElementById("teams__stats__min_GA").innerHTML = teamMin.team_name;
 }
