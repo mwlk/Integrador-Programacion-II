@@ -79,8 +79,9 @@ function getFormItem(
 function displayTeams() {
   //! recorrido del localstorage para armar tabla
   var teams = readLocalStorage("teams");
-
   if (teams) {
+    document.getElementById("teams__list").style.display = "block";
+
     const tBody = document.querySelector(`#teams__list tbody`);
 
     tBody.innerHTML = "";
@@ -97,6 +98,8 @@ function displayTeams() {
 
       tBody.appendChild(row);
     });
+  } else {
+    document.getElementById("teams__list").style.display = "none";
   }
 }
 
@@ -112,6 +115,8 @@ function calculateStats() {
     getMaxTeamWithGoalsFor(teams);
     getMinTeamWithGamesLost(teams);
     getMinTeamWithGoalsAgainst(teams);
+    getCountTeamGoalsAgainstLessThanTen(teams);
+    getCountTeamsAboveAvg(teams);
   }
 }
 
@@ -150,7 +155,6 @@ function getFixtureGoalForProm(teams) {
 
   document.getElementById("teams__stats__fixture_GF_prom").innerHTML =
     fixtureGoalForProm.toFixed(2);
-  console.log(goalsForTotal / gamesPlayedTotal);
 }
 
 //! promedio de goles en contra del campeonato
@@ -169,8 +173,6 @@ function getFixtureGoalAgainstProm(teams) {
     isFinite(gamesPlayedTotal)
       ? goalsAgainstTotal / gamesPlayedTotal
       : 0;
-
-  console.log(goalsAgainstTotal / gamesPlayedTotal);
 
   document.getElementById("teams__stats__fixture_GC_prom").innerHTML =
     fixtureGoalAgainstProm.toFixed(2);
@@ -226,4 +228,39 @@ function getMinTeamWithGoalsAgainst(teams) {
   });
 
   document.getElementById("teams__stats__min_GA").innerHTML = teamMin.team_name;
+}
+
+//! cantidad de equipos con menos de diez goles en contra
+function getCountTeamGoalsAgainstLessThanTen(teams) {
+  let count = 0;
+
+  teams.forEach((team) => {
+    if (team.goals_against < 10) {
+      count++;
+    }
+  });
+
+  document.getElementById(
+    "teams__stats_count_teams_GA_less_than_ten"
+  ).innerHTML = count;
+}
+
+//! cantidad de equipos que superaron la media de puntos
+function getCountTeamsAboveAvg(teams) {
+  let count = 0;
+  let totalPoints = 0;
+
+  teams.forEach((team) => {
+    totalPoints += team.points;
+  });
+
+  const averagePoints = totalPoints / teams.length;
+
+  teams.forEach((team) => {
+    if (team.points > averagePoints) {
+      count++;
+    }
+  });
+
+  document.getElementById("teams__stats_count_up_avg").innerHTML = count;
 }
