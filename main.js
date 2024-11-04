@@ -170,7 +170,7 @@ function getFixtureGoalAgainstProm(teams) {
   console.log(goalsAgainstTotal / gamesPlayedTotal);
 
   document.getElementById("teams__stats__fixture_GC_prom").innerHTML =
-    fixtureGoalAgainstProm;
+    fixtureGoalAgainstProm.toFixed(2);
 }
 
 //! equipo con mayor partidos ganados
@@ -183,5 +183,6 @@ function getMaxTeamWithGamesWin(teams) {
     }
   });
 
-  document.getElementById("teams__stats__max_GW").innerHTML = teamMax.team_name;
+  document.getElementById("teams__stats__max_GW").innerHTML =
+    teamMax.team_name.toFixed(2);
 }
