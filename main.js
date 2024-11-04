@@ -146,7 +146,7 @@ function getFixtureGoalForProm(teams) {
       : 0;
 
   document.getElementById("teams__stats__fixture_GF_prom").innerHTML =
-    fixtureGoalForProm;
+    fixtureGoalForProm.toFixed(2);
   console.log(goalsForTotal / gamesPlayedTotal);
 }
 
@@ -183,6 +183,5 @@ function getMaxTeamWithGamesWin(teams) {
     }
   });
 
-  document.getElementById("teams__stats__max_GW").innerHTML =
-    teamMax.team_name.toFixed(2);
+  document.getElementById("teams__stats__max_GW").innerHTML = teamMax.team_name;
 }
