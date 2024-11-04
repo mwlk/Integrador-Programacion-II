@@ -15,6 +15,9 @@ import {
 displayTeams();
 calculateStats();
 
+//! definimos focus por default
+document.getElementById("team_name").focus();
+
 //! buscamos el formulario de alta de equipos
 const form = document.getElementById("team__new__form");
 
