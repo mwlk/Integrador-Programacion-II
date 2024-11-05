@@ -1,3 +1,119 @@
-document.getElementById("button__init").addEventListener("click", () => {
-  alert("iniciar carga");
+import {
+  calculateTeamsQuantity,
+  calculateGFTotal,
+  getFixtureGoalForProm,
+  getFixtureGoalAgainstProm,
+  getMaxTeamWithGamesWin,
+  getMaxTeamWithGoalsFor,
+  getMinTeamWithGamesLost,
+  getMinTeamWithGoalsAgainst,
+  getCountTeamGoalsAgainstLessThanTen,
+  getCountTeamsAboveAvg,
+} from "../scripts/stats.js";
+
+import * as Storage from "../scripts/storage.js";
+
+//! hacemos la variable goblal pra acceder cuando sea necesario
+let teams;
+
+var teamsStoraged = Storage.readLocalStorage("teams");
+if (teamsStoraged) {
+  teams = teamsStoraged;
+
+  displayTeams(teams);
+  calculateStats(teams);
+} else {
+  toggleButton("button__save", true);
+  toggleButton("button__clear", true);
+
+  toggleTable();
+}
+
+//! boton para cargar el archivo
+document.getElementById("button__load").addEventListener("click", async () => {
+  teams = await readJsonFile("../data/teams.json");
+
+  if (teams) {
+    displayTeams(teams);
+    calculateStats(teams);
+
+    //! hay que volver a habilitar los botones
+    toggleButton("button__save", false);
+    toggleButton("button__clear", false);
+  }
 });
+
+//! boton para guardar en local storage
+document.getElementById("button__save").addEventListener("click", () => {
+  Storage.setLocalStorage("teams", teams);
+});
+
+//! boton para limpiar el almacenamiento
+document.getElementById("button__clear").addEventListener("click", () => {
+  localStorage.clear();
+  toggleTable();
+  resetStats();
+
+  toggleButton("button__save", true);
+  toggleButton("button__clear", true);
+});
+
+async function readJsonFile(path) {
+  return fetch(path).then((response) => response.json());
+}
+
+function calculateStats(teams) {
+  if (teams) {
+    calculateTeamsQuantity(teams);
+    calculateGFTotal(teams);
+    getFixtureGoalForProm(teams);
+    getFixtureGoalAgainstProm(teams);
+    getMaxTeamWithGamesWin(teams);
+    getMaxTeamWithGoalsFor(teams);
+    getMinTeamWithGamesLost(teams);
+    getMinTeamWithGoalsAgainst(teams);
+    getCountTeamGoalsAgainstLessThanTen(teams);
+    getCountTeamsAboveAvg(teams);
+  }
+}
+
+function displayTeams(teams) {
+  if (teams) {
+    document.getElementById("teams__list").style.display = "block";
+
+    const tBody = document.querySelector(`#teams__list tbody`);
+
+    tBody.innerHTML = "";
+    teams.forEach((team) => {
+      const row = document.createElement("tr");
+
+      row.innerHTML = ` <td>${team.team_name}</td>
+       <td>${team.points}</td>
+       <td>${team.goals_for}</td>
+       <td>${team.goals_against}</td>
+       <td>${team.games_played}</td>
+       <td>${team.games_win}</td>
+       <td>${team.games_lost}</td>`;
+
+      tBody.appendChild(row);
+    });
+  } else {
+    document.getElementById("teams__list").style.display = "none";
+  }
+}
+
+function toggleTable() {
+  document.getElementById("teams__list").style.display = "none";
+}
+
+function resetStats() {
+  const labels = document.querySelectorAll("#teams__stats label");
+
+  labels.forEach((label) => {
+    label.textContent = "-";
+  });
+}
+
+function toggleButton(elementId, value) {
+  document.getElementById(elementId).disabled = value;
+}
