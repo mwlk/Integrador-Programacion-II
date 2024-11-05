@@ -23,10 +23,10 @@ if (teamsStoraged) {
 
   displayTeams(teams);
   calculateStats(teams);
+  toggleButton("button__load", true);
 } else {
-  toggleButton("button__save", true);
   toggleButton("button__clear", true);
-
+  toggleButton("button__save", true);
   toggleTable();
 }
 
@@ -39,6 +39,7 @@ document.getElementById("button__load").addEventListener("click", async () => {
     calculateStats(teams);
 
     //! hay que volver a habilitar los botones
+    toggleButton("button__load", true);
     toggleButton("button__save", false);
     toggleButton("button__clear", false);
   }
@@ -47,6 +48,9 @@ document.getElementById("button__load").addEventListener("click", async () => {
 //! boton para guardar en local storage
 document.getElementById("button__save").addEventListener("click", () => {
   Storage.setLocalStorage("teams", teams);
+
+  toggleButton("button__load", true);
+  toggleButton("button__save", true);
 });
 
 //! boton para limpiar el almacenamiento
@@ -57,6 +61,7 @@ document.getElementById("button__clear").addEventListener("click", () => {
 
   toggleButton("button__save", true);
   toggleButton("button__clear", true);
+  toggleButton("button__load", false);
 });
 
 async function readJsonFile(path) {
