@@ -11,6 +11,7 @@ import {
   getCountTeamsAboveAvg,
 } from "../scripts/stats.js";
 
+//! importa todas las estadisticas y usa el alias de 'Storage'
 import * as Storage from "../scripts/storage.js";
 
 //! hacemos la variable goblal pra acceder cuando sea necesario
@@ -77,6 +78,8 @@ function calculateStats(teams) {
   }
 }
 
+//! esta funcion recorre la lista/vector/array/coleccion
+//! para luego ir llenando las tablas
 function displayTeams(teams) {
   if (teams) {
     document.getElementById("teams__list").style.display = "block";
@@ -102,10 +105,13 @@ function displayTeams(teams) {
   }
 }
 
+//! funcion que oculta la tabla
 function toggleTable() {
   document.getElementById("teams__list").style.display = "none";
 }
 
+//! su nombre lo indica pero por las dudas, setea en las cards de
+//! las estadisticas un valor por defecto => '-'
 function resetStats() {
   const labels = document.querySelectorAll("#teams__stats label");
 
@@ -114,6 +120,7 @@ function resetStats() {
   });
 }
 
+//! funcion para cambiar el estado de habilitado de un boton
 function toggleButton(elementId, value) {
   document.getElementById(elementId).disabled = value;
 }
