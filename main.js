@@ -61,6 +61,8 @@ form.addEventListener("submit", function (event) {
   clearItems(form);
 
   setFocus("team_name");
+
+  document.getElementById("form__submit__add").disabled = true;
 });
 
 function setFocus(input) {
