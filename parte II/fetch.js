@@ -112,6 +112,9 @@ function displayTeams(teams) {
 
 //! funcion que oculta la tabla
 function toggleTable() {
+  const tBody = document.querySelector(`#teams__list tbody`);
+  tBody.innerHTML = "";
+
   document.getElementById("teams__list").style.display = "none";
 }
 
